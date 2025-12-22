@@ -1,0 +1,541 @@
+\documentclass[12pt]{article}
+
+% ===== Idioma y codificación =====
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% ===== Página y formato =====
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% ===== Matemática, tablas e imágenes =====
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{siunitx}
+
+\sisetup{
+  output-decimal-marker = {,},
+  per-mode = symbol
+}
+
+\begin{document}
+
+% ================== PORTADA / ENCABEZADO ==================
+\begin{center}
+% Si no tienes las imágenes, comenta estas dos líneas:
+\includegraphics[width=2cm]{img/img/Imagen1.png}\hfill
+\includegraphics[width=2cm]{img/img/Imagen2.png}
+\vspace{2mm}
+
+\textbf{Escuela Politécnica Nacional}\\
+\textbf{Facultad de Ingeniería Mecánica}\\
+\textbf{Laboratorio de Mecánica de Fluidos}\\
+\textbf{2025-B}
+
+\vspace{4mm}
+\textbf{\Large Taller Práctico}
+
+\vspace{2mm}
+\textbf{Integrantes:}\\
+Castillo Martínez David Patricio\\
+Oñate Acurio Edison Jhoe\\
+Sánchez Recalde Jonatan Steven\\
+
+\vspace{2mm}
+\textbf{Grupo:} GR2S3\\
+\textbf{Tema:} Pérdidas mayores
+\end{center}
+\vspace{2mm}
+% ================== DATOS ==================
+\section*{Datos}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c}
+\toprule
+\textbf{Tubo} & \textbf{Condición} & \textbf{$d$ (diámetro interno) [mm]} & \textbf{$D$ (diámetro externo) [mm]}\\
+\midrule
+1 & No rugoso & 17,10 & 19,00\\
+2 & Rugoso    & 14,66 & 19,00\\
+3 & No rugoso & 10,80 & 12,66\\
+4 & No rugoso & 7,12  & 9,46\\
+5 & No rugoso & 4,441 & 6,34\\
+\bottomrule
+\end{tabular}
+\caption{Mediciones de los diámetros internos y externos de los cinco tubos.}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l l l}
+\toprule
+\textbf{Categoría} & \textbf{Parámetro} & \textbf{Valor}\\
+\midrule
+Agua    & Temperatura & 15 \si{\celsius}\\
+Agua    & Viscosidad  & 1,138 \si{mm^2/s}\\
+Tubería & Longitud    & 1000 \si{mm}\\
+Tubería & Rugosidad   & 0,002 \si{mm}\\
+\bottomrule
+\end{tabular}
+\caption{Datos de las propiedades registradas durante la práctica.}
+\end{table}
+
+% ================== DATOS POR TUBO ==================
+\section*{Datos por tubería}
+
+\subsection*{Tubo 1}
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c}
+\toprule
+\textbf{$Q$ [L/s]} & \textbf{$Q$ [m$^3$/s]} & \textbf{Pérdidas [m]} & \textbf{$V$ [m/s]}\\
+\midrule
+0,51 & 0,00051 & 4,18 & 2,21\\
+0,41 & 0,00041 & 2,55 & 1,78\\
+0,31 & 0,00031 & 1,41 & 1,35\\
+0,21 & 0,00021 & 0,76 & 0,91\\
+0,11 & 0,00011 & 0,20 & 0,48\\
+\bottomrule
+\end{tabular}
+\caption{Datos de caudal, pérdidas y velocidad para el tubo 1.}
+\end{table}
+
+\subsection*{Tubo 2}
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c}
+\toprule
+\textbf{$Q$ [L/s]} & \textbf{$Q$ [m$^3$/s]} & \textbf{Pérdidas [m]} & \textbf{$V$ [m/s]}\\
+\midrule
+0,60 & 0,00060 & 13,4 & 3,55\\
+0,51 & 0,00051 & 10,6 & 3,02\\
+0,41 & 0,00041 & 7,66 & 2,43\\
+0,30 & 0,00030 & 3,34 & 1,78\\
+0,21 & 0,00021 & 1,54 & 1,24\\
+\bottomrule
+\end{tabular}
+\caption{Datos de caudal, pérdidas y velocidad para el tubo 2.}
+\end{table}
+
+\subsection*{Tubo 3}
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c}
+\toprule
+\textbf{$Q$ [L/s]} & \textbf{$Q$ [m$^3$/s]} & \textbf{Pérdidas [m]} & \textbf{$V$ [m/s]}\\
+\midrule
+0,53 & 0,00053 & 2,41 & 5,78\\
+0,41 & 0,00041 & 1,50 & 4,47\\
+0,31 & 0,00031 & 1,02 & 3,38\\
+0,21 & 0,00021 & 0,58 & 2,29\\
+0,10 & 0,00010 & 0,27 & 1,09\\
+\bottomrule
+\end{tabular}
+\caption{Datos de caudal, pérdidas y velocidad para el tubo 3.}
+\end{table}
+
+\subsection*{Tubo 4}
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c}
+\toprule
+\textbf{$Q$ [L/s]} & \textbf{$Q$ [m$^3$/s]} & \textbf{Pérdidas [m]} & \textbf{$V$ [m/s]}\\
+\midrule
+0,41 & 0,00041 & 8,79 & 10,29\\
+0,30 & 0,00030 & 4,90 & 7,53\\
+0,21 & 0,00021 & 2,70 & 5,27\\
+0,10 & 0,00010 & 0,95 & 2,51\\
+\bottomrule
+\end{tabular}
+\caption{Datos de caudal, pérdidas y velocidad para el tubo 4.}
+\end{table}
+
+\subsection*{Tubo 5}
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c}
+\toprule
+\textbf{$Q$ [L/s]} & \textbf{$Q$ [m$^3$/s]} & \textbf{Pérdidas [m]} & \textbf{$V$ [m/s]}\\
+\midrule
+0,10 & 0,00010 & 10,5 & 6,45\\
+0,08 & 0,00008 & 7,52 & 5,16\\
+0,06 & 0,00006 & 5,07 & 3,87\\
+0,04 & 0,00004 & 3,61 & 2,58\\
+\bottomrule
+\end{tabular}
+\caption{Datos de caudal, pérdidas y velocidad para el tubo 5.}
+\end{table}
+
+% ================== RESOLUCIÓN ==================
+\section*{Resolución}
+
+\subsection*{1) Reynolds y rugosidad relativa}
+\textbf{Detallar un ejemplo de los cálculos de Reynolds y rugosidad relativa para una tubería (incluyendo unidades de medida).}
+
+\begin{equation}
+Re = \frac{\rho\, v\, D}{\mu}
+\end{equation}
+
+Donde:
+\begin{itemize}
+\item $Re$ = Número de Reynolds
+\item $\rho$ = Densidad del agua [kg/m$^3$]
+\item $v$ = Velocidad del fluido [m/s]
+\item $D$ = Diámetro interno [m]
+\item $\mu$ = Viscosidad dinámica [Pa$\cdot$s] \quad (si se usa viscosidad cinemática $\nu$: $Re = vD/\nu$)
+\item $\varepsilon$ = Rugosidad del acero inoxidable [0,002 mm]
+\end{itemize}
+
+Rugosidad relativa:
+\begin{equation}
+\frac{\varepsilon}{D}
+\end{equation}
+
+\textbf{Ejemplo de cálculos - Tubería 1:}\\
+
+\textbf{Cálculo del número de Reynolds}
+
+\begin{equation}
+Re=\frac{\rho\,V\,D}{\mu}
+\end{equation}
+
+\begin{equation}
+V=\frac{Q}{A}=\frac{Q}{\dfrac{\pi D^2}{4}}
+\end{equation}
+
+\begin{equation}
+Re=\frac{\left(1000\ \dfrac{kg}{m^3}\right)
+\left(\dfrac{5{,}1\times10^{-4}\ \dfrac{m^3}{s}}{\dfrac{\pi(0{,}0171\ m)^2}{4}}\right)
+(0{,}0171\ m)}
+{1138\times10^{-6}\ m^2}
+\end{equation}
+
+\begin{equation}
+Re=33{,}37\times10^{3}
+\end{equation}
+
+\vspace{3mm}
+\textbf{Rugosidad relativa}
+
+\begin{equation}
+\text{Rugosidad relativa}=\frac{\varepsilon}{D}
+\end{equation}
+
+\begin{equation}
+\text{Rugosidad relativa}=
+\frac{0{,}002\ mm}{17{,}10\ mm}
+=116{,}95\times10^{-6}
+\end{equation}
+
+\textbf{Ejemplo de cálculos - Tubería 2:}\\
+
+La tubería 2 utilizada en la práctica se encuentra con una mayor rugosidad experimental a comparación del teórico, por ello, utilizando los datos registrados en la práctica, encontramos la rugosidad experimental.
+
+\textbf{Cálculo de la velocidad}
+
+\begin{equation}
+V=\frac{Q}{A}=
+\frac{0{,}6\ \dfrac{L}{s}\cdot\left(\dfrac{1\ m^3}{1000\ L}\right)}
+{\dfrac{\pi(0{,}01466\ m)^2}{4}}
+=3{,}55\ \dfrac{m}{s}
+\end{equation}
+
+Utilizamos la fórmula de las pérdidas para calcular el factor de fricción:
+
+\begin{equation}
+h_f=f\frac{L}{D}\frac{V^2}{2g}
+\end{equation}
+
+\begin{equation}
+f=\frac{h_f\cdot 2g\cdot D}{L\cdot V^2}
+\end{equation}
+
+\begin{equation}
+f=\frac{(13{,}4\ m)\cdot 2\left(9{,}81\ \dfrac{m}{s^2}\right)\cdot (0{,}01466)}
+{(1\ m)\cdot \left(3{,}55\ \dfrac{m}{s}\right)^2}
+=0{,}3058
+\end{equation}
+
+Cálculo del número de Reynolds
+
+\begin{equation}
+Re=\frac{\rho\,V\,D}{\mu}
+\end{equation}
+
+\begin{equation}
+Re=
+\frac{\left(1000\ \dfrac{kg}{m^3}\right)
+\left(\dfrac{600\times10^{-6}\ \dfrac{m^3}{s}}{\dfrac{\pi(0{,}01466\ m)^2}{4}}\right)
+(0{,}01466\ m)}
+{1138\times10^{-6}\ m^2}
+\end{equation}
+
+\begin{equation}
+Re=45{,}73\times10^{3}
+\end{equation}
+
+Con la ayuda de la fórmula del factor de fricción a partir de la siguiente fórmula:
+
+\begin{equation}
+f=\frac{0{,}25}{\left[\log_{10}\left(\frac{\dfrac{\varepsilon}{D}}{3{,}7}
++\frac{5{,}74}{Re^{0{,}9}}\right)\right]^2}
+\end{equation}
+
+\begin{equation}
+0{,}3058=
+\frac{0{,}25}{\left[\log_{10}\left(\frac{\dfrac{\varepsilon}{0{,}01466}}{3{,}7}
++\frac{5{,}74}{(45{,}73\times10^{3})^{0{,}9}}\right)\right]^2}
+\end{equation}
+
+\begin{equation}
+\varepsilon=6{,}74\ mm
+\end{equation}
+
+\subsection*{Tabla general del número de Reynolds y rugosidad relativa}
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c}
+\toprule
+\textbf{Tubería} & \textbf{Reynolds} & \textbf{Rugosidad relativa}\\
+\midrule
+1 & 33373,5501 & 0,000116959\\
+2 & 45731,9859 & 0,460436562\\
+3 & 54104,3937 & 0,000185185\\
+4 & 64380,3163 & 0,000280899\\
+5 & 25170,8699 & 0,000450349\\
+\bottomrule
+\end{tabular}
+\caption{Número de Reynolds y rugosidad relativa.}
+\end{table}
+
+\subsection*{2) Factor de fricción (Colebrook y diagrama de Moody)}
+\textbf{Encontrar los valores de $f$ para cada tubería empleando la ecuación de Colebrook y el diagrama de Moody (se debe indicar en la gráfica cómo fue encontrado el valor de $f$).}
+
+Donde:
+\begin{equation}
+\frac{1}{\sqrt{f}}=
+-2\log_{10}\left(
+\frac{\dfrac{\varepsilon}{D}}{3{,}7}
++\frac{2{,}51}{Re\sqrt{f}}
+\right)
+\end{equation}
+
+\begin{itemize}
+\item $f$ = Factor de fricción
+\item $D$ = Diámetro interno [m]
+\item $\varepsilon$ = Rugosidad [mm]
+\end{itemize}
+
+\subsection*{Ejemplo de cálculos -- Tubería 1}
+
+\begin{equation}
+\frac{1}{\sqrt{f}}=
+-2\log_{10}\left(
+\frac{116{,}95\times10^{-6}}{3{,}7}
++\frac{2{,}51}{33{,}37\times10^{3}\sqrt{f}}
+\right)
+\end{equation}
+
+\begin{equation}
+f=0{,}023
+\end{equation}
+
+\subsection*{Tabla general del factor de fricción}
+\begin{table}[H]
+\centering
+\begin{tabular}{c c}
+\toprule
+\textbf{Tubería} & \textbf{$f$}\\
+\midrule
+1 & 0,023\\
+2 & 0,3058\\
+3 & 0,021\\
+4 & 0,021\\
+5 & 0,025\\
+\bottomrule
+\end{tabular}
+\caption{Factor de fricción para los distintos tubos.}
+\end{table}
+
+\subsection*{Diagrama de Moody}
+\begin{figure}[H]
+\centering
+% Si no tienes esta imagen, comenta la línea:
+\includegraphics[width=0.92\linewidth]{img/img/Imagen3.png}
+\caption{Diagrama de Moody.}
+\end{figure}
+
+En el diagrama de Moody el procedimiento es sencillo, primero debemos identificar la columna derecha en donde se encuentra la rugosidad relativa, en este caso como ejemplo seleccionamos el valor de 0,0001, como siguiente paso debemos encontrar el valor de Reynolds, siguiendo la línea curva encontramos el valor de $f$, en este caso observamos un valor igual a 0,023.
+
+\subsection*{3) Pérdidas teóricas empleando la ecuación de Darcy}
+\textbf{Hallar las pérdidas teóricas empleando la ecuación de Darcy.}
+
+\begin{equation}
+h_f = f\frac{L}{D}\frac{v^2}{2g}
+\end{equation}
+
+Donde:
+\begin{itemize}
+\item $f$ = Factor de fricción
+\item $D$ = Diámetro interno [m]
+\item $\rho$ = Densidad del agua [kg/m$^3$]
+\item $v$ = Velocidad del fluido [m/s]
+\item $g$ = Gravedad [m/s$^2$]
+\item $L$ = Longitud del tubo [m]
+\end{itemize}
+
+\textbf{Ejemplo de cálculos - Tubería 1:}\\
+
+\begin{equation}
+h_f=(0{,}023)\left(\frac{1\ m}{0{,}0171\ m}\right)
+\frac{\left(2{,}221\ \dfrac{m}{s}\right)^2}
+{2\left(9{,}81\ \dfrac{m}{s^2}\right)}
+\end{equation}
+
+\begin{equation}
+h_f=0{,}338\ m
+\end{equation}
+
+\subsection*{Pérdidas experimentales}
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c c c}
+\toprule
+\textbf{Tubería} & \textbf{$hf1$} & \textbf{$hf2$} & \textbf{$hf3$} & \textbf{$hf4$} & \textbf{$hf5$}\\
+\midrule
+1 & 0,33482453 & 0,21720645 & 0,12493964 & 0,05676956 & 0,01579484\\
+2 & 13,3986553 & 9,69657573 & 6,27793847 & 3,36856175 & 1,63473695\\
+3 & 3,31094688 & 1,98021152 & 1,13221769 & 0,51971769 & 0,11774691\\
+4 & 15,9173603 & 8,52374111 & 4,17504853 & 0,94708235 & --\\
+5 & 11,9365731 & 7,63940678 & 4,29716631 & 1,90985169 & --\\
+\bottomrule
+\end{tabular}
+\caption{Pérdidas experimentales de las tuberías.}
+\end{table}
+
+\subsection*{Pérdidas teóricas}
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c c c}
+\toprule
+\textbf{Tubería} & \textbf{$hf1$} & \textbf{$hf2$} & \textbf{$hf3$} & \textbf{$hf4$} & \textbf{$hf5$}\\
+\midrule
+1 & 4,18 & 2,55 & 1,41 & 0,76 & 0,2\\
+2 & 13,4 & 10,6 & 7,66 & 3,34 & 1,54\\
+3 & 2,41 & 1,5 & 1,02 & 0,58 & 0,27\\
+4 & 8,79 & 4,9 & 2,7 & 0,95 & --\\
+5 & 10,5 & 7,52 & 5,07 & 3,61 & --\\
+\bottomrule
+\end{tabular}
+\caption{Pérdidas teóricas de las tuberías.}
+\end{table}
+
+\subsection*{Error}
+\begin{table}[H]
+\centering
+\begin{tabular}{c p{0.72\linewidth}}
+\toprule
+\textbf{Tubería} & \textbf{Error (\%)}\\
+\midrule
+1 & 91,9898437;\ 91,4820998;\ 91,1390324;\ 92,5303214;\ 92,1025806\\
+2 & 0,0100352;\ 8,52287047;\ 18,0425787;\ 0,85514208;\ 6,15174974\\
+3 & 37,383688;\ 32,0141013;\ 11,0017345;\ 10,3935014;\ 56,390032\\
+4 & 81,0848729;\ 73,9539002;\ 54,6314272;\ 0,30712153\\
+5 & 13,6816485;\ 1,5878561;\ 15,243268;\ 47,0955209\\
+\bottomrule
+\end{tabular}
+\caption{Error porcentual de las pérdidas registradas en las tuberías.}
+\end{table}
+
+% ================== GRÁFICAS ==================
+\section*{Gráficas}
+\textbf{Realizar las gráficas de pérdidas en función del caudal para cada tubería. En la gráfica de cada tubería deberán constar dos curvas: una de valores de pérdidas teóricos y la otra con los valores de pérdidas obtenidos experimentalmente, obteniéndose la línea de tendencia de ser necesario.}\\
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.75\linewidth]{img/img/Imagen4.png}
+\caption{Gráfica de pérdidas vs caudal para la tubería 1.}
+\end{figure}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.75\linewidth]{img/img/Imagen5.png}
+\caption{Gráfica de pérdidas vs caudal para la tubería 2.}
+\end{figure}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.75\linewidth]{img/img/Imagen6.png}
+\caption{Gráfica de pérdidas vs caudal para la tubería 3.}
+\end{figure}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.75\linewidth]{img/img/Imagen7.png}
+\caption{Gráfica de pérdidas vs caudal para la tubería 4.}
+\end{figure}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.75\linewidth]{img/img/Imagen8.png}
+\caption{Gráfica de pérdidas vs caudal para la tubería 5.}
+\end{figure}
+
+5. Realizar una gráfica comparativa para todas las tuberías de pérdidas en función del caudal para los valores experimentales (una sola gráfica).
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.75\linewidth]{img/img/Imagen9.png}
+\caption{Gráfica de pérdidas experimentales vs caudal para todas las tuberías.}
+\end{figure}
+
+% ================== ANÁLISIS ==================
+\section*{Análisis de resultados}
+\textbf{Realizar el análisis de las gráficas obtenidas. Es necesario analizar tendencias en las gráficas y establecer relaciones entre variables.}\\
+
+A partir de las gráficas de pérdidas de carga en función del caudal para cada una de las tuberías analizadas, se observa que en todos los casos las pérdidas aumentan al incrementarse el caudal. Este incremento no es lineal, ya que al aumentar el caudal también se incrementa la velocidad del flujo, intensificando los efectos de fricción y, por tanto, la disipación de energía.
+
+Al comparar los valores teóricos y experimentales, se aprecia que el grado de concordancia varía entre tuberías. La tubería 2, por ejemplo, presenta errores porcentuales bajos para varios puntos de operación (0,01 \%, 0,85 \% y 6,15 \%), lo que indica que el modelo teórico representa adecuadamente el comportamiento real del flujo. Esto se explica por su elevada rugosidad relativa ($\varepsilon/D \approx 0,46$), lo que hace que el régimen de fricción esté dominado por la rugosidad y sea menos sensible a pequeñas variaciones experimentales.
+
+En cambio, la tubería 1 presenta errores porcentuales extremadamente altos, del orden del 91 \% al 92 \% para todos los caudales analizados. Al analizar los datos de las tablas de pérdidas experimentales y teóricas, se observa que, por ejemplo, para un caudal de 0,51 L/s, la pérdida teórica es 4,18 m, mientras que la pérdida experimental medida es apenas 0,335 m. Esta diferencia se mantiene para todos los caudales, lo que indica que las pérdidas medidas siempre resultan menores a las reales.
+
+Este comportamiento puede explicarse considerando las características hidráulicas de la tubería 1. Se trata de una tubería lisa, con una rugosidad relativa muy baja ($\varepsilon/D = 0,00012$) y un diámetro interno relativamente grande (17,10 mm). En este tipo de tuberías, el factor de fricción es pequeño ($f \approx 0,023$) y las pérdidas mayores calculadas teóricamente son muy sensibles a errores experimentales. Cualquier incertidumbre en la medición del caudal, la presión o la diferencia de alturas genera variaciones considerables.
+
+Además, en tuberías lisas y de baja pérdida, las pérdidas menores (entradas, salidas, conexiones y accesorios del banco de pruebas) pueden ser comparables o incluso mayores que las pérdidas por fricción a lo largo del tubo. Dado que estas pérdidas no se consideran en el cálculo teórico, la presión realmente medida en el experimento no refleja únicamente las pérdidas mayores, lo que conduce a valores experimentales considerablemente menores que los teóricos y, por ende, a errores porcentuales elevados.
+
+
+La gráfica comparativa de pérdidas experimentales para todas las tuberías refuerza este análisis, ya que se observa que las tuberías de menor diámetro interno (tuberías 4 y 5) presentan pérdidas mucho mayores para un mismo caudal, lo que reduce el impacto relativo de los errores de medición. En estos casos, aunque existen discrepancias entre valores teóricos y experimentales, los errores porcentuales son menores que los observados en la tubería 1.
+
+Adicionalmente, a partir de los datos medidos se pueden establecer relaciones directas entre las variables principales del fenómeno. Por ejemplo, el caudal y la velocidad están relacionados por
+\[
+V=\frac{Q}{A},
+\]
+por lo que, al mantenerse el diámetro de cada tubería constante, el aumento de $Q$ provoca un aumento proporcional de $V$. Esto se observa en la tubería 1, donde al pasar de 0,11 L/s a 0,51 L/s, la velocidad aumenta de 0,48 m/s a 2,21 m/s y en la tubería 5, donde al pasar de 0,04 L/s a 0,10 L/s, la velocidad aumenta de 2,58 m/s a 6,45 m/s.
+
+Finalmente, existe una relación clara entre diámetro interno, velocidad y pérdidas, es decir, para un mismo caudal, un diámetro interno menor implica un área menor, lo que incrementa la velocidad y eleva la fricción, generando mayores pérdidas. Esto se evidencia al comparar, por ejemplo, caudales cercanos: en la tubería 1 (d = 17,10 mm) con 0,51 L/s, la velocidad es 2,21 m/s y la pérdida teórica es 4,18 m; mientras que en la tubería 4 (d = 7,12 mm) con un caudal incluso menor de 0,41 L/s, la velocidad se eleva a 10,29 m/s y la pérdida teórica aumenta a 8,79 m, mostrando el efecto dominante del diámetro sobre el incremento de pérdidas.
+
+% ================== CONCLUSIONES ==================
+\section*{Conclusiones}
+
+\subsection*{Castillo Martínez David Patricio}
+\begin{itemize}
+\item Conforme incrementa el caudal, las pérdidas igualmente se elevan, lo que indica que una velocidad del agua más alta genera un mayor roce en el interior de la tubería.
+\item Las tuberías que son más estrechas y tienen una superficie más áspera experimentan mayores pérdidas, porque el flujo enfrenta más oposición al moverse a través del tubo.
+\item La diferencia entre los datos teóricos y los resultados prácticos se atribuyen esencialmente a errores en la medición y a las condiciones reales del experimento que no se contemplan en los cálculos, incluyendo pequeñas pérdidas adicionales.
+\end{itemize}
+
+\subsection*{Oñate Acurio Edison Jhoe}
+\begin{itemize}
+\item El comportamiento de las pérdidas de carga en función del caudal observado experimentalmente confirma la tendencia no lineal prevista por la teoría del flujo en tuberías, evidenciándose un incremento progresivo de las pérdidas conforme aumenta el caudal en todas las tuberías analizadas.
+\item El análisis comparativo entre pérdidas teóricas y experimentales demuestra la influencia determinante del régimen hidráulico y de las características físicas de la tubería en la magnitud del error obtenido.
+\item Los resultados experimentales obtenidos permiten establecer de manera clara que el diámetro interno y la rugosidad relativa son las variables dominantes en la generación de pérdidas de carga.
+\end{itemize}
+
+\subsection*{Sánchez Recalde Jonatan Steven}
+\begin{itemize}
+\item Se comprobó que de formar experimentalmente existe una relación directa entre el caudal y perdidas, es decir que al aumentar el caudal que fluye por la tubería, por consiguiente, las perdidas aumentaran, lo que comprueba lo que plantea Darcy.
+\item El diámetro de la tubería puede llegar a influir de forma directa con las perdidas, lo que demuestra que cuando la tubería posee un diámetro mayor, experimenta menores perdidas para un mismo caudal.
+\item Las diferencias que existe entre los valores experimentales con los teóricos dependen de los componentes reales del sistema, rugosidad, perdidas por equipos, imperfecciones del material y perdidas menores que no fueron consideradas en la ecuación.
+\end{itemize}
+
+\end{document}
